@@ -1,0 +1,5 @@
+<% if current_user.nil? %>
+    <%= link_to "Google+", "/auth/google_oauth2", id: ""%>
+<% else  %>
+    <%= "Hello #{current_user.name}, welcome! " %>
+<% end %>
