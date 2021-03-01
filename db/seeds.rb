@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts "Criando produtos"
+Product.find_or_create_by!(name: "Café", shared: true, category: "Alimento")
+Product.find_or_create_by!(name: "Desodorante", shared: true, category: "Higiene Pessoal")
+Product.find_or_create_by!(name: "Granola", shared: true, category: "Alimento")
+Product.find_or_create_by!(name: "Shampoo", shared: true, category: "Higiene Pessoal")

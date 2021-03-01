@@ -5,7 +5,7 @@
     <div style="display: flex; justify-content: space-around;">
         <div>
             <% if current_user.nil? %>
-                <%= button_to "G+", "/auth/google_oauth2", class: "btn-floating btn-large waves-effect waves-light red" %>
+                <%= link_to "G+", "/auth/google_oauth2", class: "btn-floating btn-large waves-effect waves-light red white-text"%>
             <% end %>
         </div>
         <div>
@@ -13,7 +13,7 @@
         </div>
         
         <div>
-            <%= link_to 'Carrinho', products_path, class: "waves-effect waves-light btn grey white-text"%>
+            <%= link_to 'Carrinho', cart_index_path, class: "waves-effect waves-light btn grey white-text"%>
         </div>
 
     </div>

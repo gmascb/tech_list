@@ -8,6 +8,20 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
+    saved = false
+    
+    cart = Cart.by_user(current_user)
+    cart_product = CartProduct.find_by(product_id: @product.id, cart_id: cart.id)
+
+    unless (cart_product.nil?)
+      cart_product.destroy
+    else
+      saved = true
+      CartProduct.create(product_id: @product.id, cart_id: cart.id)
+    end
+
+    flash[:notice] = "O item foi #{@product.name} " + (saved ? "adicionado." : "removido.")
+    redirect_to products_path
   end
 
   # GET /products/new
