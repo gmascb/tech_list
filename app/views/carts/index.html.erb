@@ -1,11 +1,21 @@
-<h1>
-Tela do carrinho
-</h1>
-
-<h3>
-Items da lista
-</h3>
-
+<div style="display: flex; justify-content: left; align-items: center; flex-direction: column;"> 
 <% @products.each do |p|%>
-    <p> <%= p.name %> </p>
+    <div id="item">
+        <%= p.name %>
+    </div>
 <% end %>
+
+
+<%= link_to "Finalizar", finish_path, method: :post, class: "white-text waves-effect waves-light btn", style: "margin: 50px;"%>
+</div> 
+
+<style>
+
+    #item{
+        padding: 10px;
+        margin: 5px;
+        background-color: grey;
+        color: white;
+    }
+
+</style>
