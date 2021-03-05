@@ -11,3 +11,7 @@ Product.find_or_create_by!(name: "Café", shared: true, category: "Alimento")
 Product.find_or_create_by!(name: "Desodorante", shared: true, category: "Higiene Pessoal")
 Product.find_or_create_by!(name: "Granola", shared: true, category: "Alimento")
 Product.find_or_create_by!(name: "Shampoo", shared: true, category: "Higiene Pessoal")
+
+puts 'Criando usuario'
+User.find_or_create_by!(name: "Daniel")
+User.find_or_create_by!(name: "Jose")

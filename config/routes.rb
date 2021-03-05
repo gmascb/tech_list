@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   #Cart
   get 'cart' => 'carts#index'
   post 'finish' => 'carts#finish'
+  post 'add_contributor' => 'carts#add_contributor'
 
   #routes for google
   match 'auth/google_oauth2/callback', to: 'sessions#create', via: [:get, :post]

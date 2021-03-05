@@ -9,6 +9,8 @@
 <%= link_to "Finalizar", finish_path, method: :post, class: "white-text waves-effect waves-light btn", style: "margin: 50px;"%>
 </div> 
 
+<%= render 'add_contributor_form', cart_id: @cart.id %>
+
 <style>
 
     #item{

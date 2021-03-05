@@ -1,0 +1,16 @@
+<%= form_tag "/add_contributor", method: :post do |form| %>
+
+    <%= hidden_field_tag :cart_id, cart_id %>
+
+    <div style="width: 30%;">
+        <select name="user_id" id="user_id" style="display: block !important;">
+            <option value="" disabled selected>Selecione o usuário para contribuir...</option>
+            <% User.all.order(:name).each do |user| %>
+                <option value="<%= user.id %>"><%= user.name %></option>
+            <% end %>
+        </select>
+    </div>
+
+    <%= submit_tag "Adicionar", class: "white-text waves-effect waves-light btn" %>
+
+<% end %>

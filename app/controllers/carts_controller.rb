@@ -24,5 +24,10 @@ class CartsController < ApplicationController
         redirect_to products_path
     end
 
+    def add_contributor
+        CartContributor.find_or_create_by!(user_id: params[:user_id].to_i, cart_id: params[:cart_id].to_i)
+        redirect_to cart_path
+    end
+
 end
   
