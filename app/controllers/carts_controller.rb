@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def index
         if current_user.nil?
             redirect_to root_path, notice: "É necessário fazer login..."
@@ -26,7 +28,11 @@ class CartsController < ApplicationController
 
     def add_contributor
         CartContributor.find_or_create_by!(user_id: params[:user_id].to_i, cart_id: params[:cart_id].to_i)
-        redirect_to cart_path
+        redirect_to cart_path, notice: "#{User.find(params[:user_id]).name} foi adicionado no carrinho"
+    end
+
+    def alter_cart
+        current_user.update!(favorite_cart: params[:carrinho].to_i) if params[:carrinho].to_i > 0
     end
 
 end

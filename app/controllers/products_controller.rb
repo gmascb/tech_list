@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   def show
     saved = false
     
-    cart = Cart.by_user(current_user)
+    cart = Cart.find(current_user.favorite_cart)
     cart_product = CartProduct.find_by(product_id: @product.id, cart_id: cart.id)
 
     unless (cart_product.nil?)
@@ -20,7 +20,10 @@ class ProductsController < ApplicationController
       CartProduct.create(product_id: @product.id, cart_id: cart.id)
     end
 
-    flash[:notice] = "O item foi #{@product.name} " + (saved ? "adicionado." : "removido.")
+    msg = "O item foi #{@product.name} " + (saved ? "adicionado " : "removido ") + "no carrinho do " + cart.user.name
+
+    flash[:notice] = msg
+
     redirect_to products_path
   end
 

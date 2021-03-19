@@ -1,3 +1,28 @@
+
+<% 
+  cart = Cart.find_or_create_by!(user_id: current_user.id)
+%>
+
+
+    <div style="width: 30%;">
+      <p>Selecione o Carrinho para adicionar...</p>
+      
+      <select name="cart_id" 
+              id="cart_id" 
+              style="display: block !important;"
+              onchange="myFunction()"
+              >
+      
+          <option value="<%= cart.id%>" selected><%= "Carrinho do #{cart.user.name}" %> </option>
+      
+          <% CartContributor.my_carts(current_user.id).each do |cart_contrib| %>
+              <option value="<%= cart_contrib.cart.id %>"><%= "Carrinho do #{cart_contrib.cart.user.name}" %></option>
+          <% end %>
+      
+      </select>
+
+    </div>
+
 <table class="centered">
   <thead>
     <tr>
@@ -12,7 +37,14 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= product.category %></td>
-        <td><%= link_to '<i class="material-icons">add</i><i class="material-icons">remove</i>'.html_safe, product %></td>
+
+        <td> 
+          <a class="" rel="nofollow" data-method="get" href="/products/<%= product.id %>?cart=<%= cart.id %>">
+            <i class="material-icons">add</i>
+            <i class="material-icons">remove</i>
+          </a>
+        </td>
+
         <td><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_product_path(product) %></td>
         <td><%= link_to '<i class="material-icons">delete</i>'.html_safe, product, method: :delete, data: { confirm: 'Tem certeza disso?' } %></td>
       </tr>
@@ -23,3 +55,20 @@
 <br>
 
 <%= link_to 'New Product', new_product_path, class: "white-text waves-effect waves-light btn" %>
+
+
+<script>
+  function myFunction() {
+
+    debugger;
+
+    var xhttp = new XMLHttpRequest();
+    
+    var e = document.getElementById("cart_id");
+    var value = e.options[e.selectedIndex].value;
+    
+    xhttp.open("POST", "/altera_carrinho?carrinho=" + value, true);
+    xhttp.send();
+    
+  }
+</script>
