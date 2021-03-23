@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   def show
     saved = false
     
-    cart = Cart.find(current_user.favorite_cart)
+    cart = Cart.find(User.find(current_user.id).favorite_cart)
     cart_product = CartProduct.find_by(product_id: @product.id, cart_id: cart.id)
 
     unless (cart_product.nil?)

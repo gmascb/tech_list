@@ -32,7 +32,9 @@ class CartsController < ApplicationController
     end
 
     def alter_cart
+        puts " Alterando para carrinho favorito #{params[:carrinho].to_i} do usuário #{current_user.name}"
         current_user.update!(favorite_cart: params[:carrinho].to_i) if params[:carrinho].to_i > 0
+        puts "Carrinho alterado para #{current_user.favorite_cart}"
     end
 
 end
