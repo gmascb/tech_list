@@ -2,22 +2,26 @@ class CartsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def index
-        if current_user.nil?
-            redirect_to root_path, notice: "É necessário fazer login..."
-        else
 
-            @cart = Cart.by_user(current_user)
-            cp = CartProduct.where(cart_id: @cart.id)
-            
-            @products = []
-            cp.each{ |cp| @products << Product.find(cp.product_id) }
+        @cart = Cart.by_user(current_user)
+        cp = CartProduct.where(cart_id: @cart.id)
+        
+        @products = []
+        cp.each{ |cp| @products << Product.find(cp.product_id) }
+
+        @my_cart_contributors = []
+        @cart_contributors = CartContributor.my_carts(current_user.id)
+
+        @cart_contributors.each do |cc|
+            @my_cart_contributors << cc.cart unless cc.cart.user.id == current_user.id
         end
+
     end
 
 
     def finish
         if current_user.nil?
-            redirect_to root_path, notice: "É necessário fazer login..."
+            redirect_to root_path, notice: "You need to login..."
         else
             @cart = Cart.by_user(current_user)
             CartProduct.where(cart_id: @cart.id).destroy_all
@@ -28,7 +32,7 @@ class CartsController < ApplicationController
 
     def add_contributor
         CartContributor.find_or_create_by!(user_id: params[:user_id].to_i, cart_id: params[:cart_id].to_i)
-        redirect_to cart_path, notice: "#{User.find(params[:user_id]).name} foi adicionado no carrinho"
+        redirect_to cart_path, notice: "#{User.find(params[:user_id]).name} was added to the cart!"
     end
 
     def alter_cart

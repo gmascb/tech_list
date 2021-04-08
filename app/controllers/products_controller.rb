@@ -20,7 +20,9 @@ class ProductsController < ApplicationController
       CartProduct.create(product_id: @product.id, cart_id: cart.id)
     end
 
-    msg = "O item foi #{@product.name} " + (saved ? "adicionado " : "removido ") + "no carrinho do " + cart.user.name
+    msg = "The item #{@product.name} was " 
+    msg += (saved ? "added to" : "removed from") + " the " 
+    msg += cart.user.name.split(" ").first + "'s cart"
 
     flash[:notice] = msg
 

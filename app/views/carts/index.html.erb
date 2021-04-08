@@ -1,17 +1,53 @@
-<div style="display: flex; justify-content: left; align-items: center; flex-direction: column;"> 
-<% @products.each do |p|%>
-    <div id="item">
-        <%= p.name %>
-    </div>
-<% end %>
-
-
-<%= link_to "Finalizar", finish_path, method: :post, class: "white-text waves-effect waves-light btn", style: "margin: 50px;"%>
-</div> 
 
 <%= render 'add_contributor_form', cart_id: @cart.id %>
 
+
+
+<div style="display: flex; justify-content: left; align-items: center; flex-direction: column;"> 
+    
+    <div style="display: flex; justify-content: center;">
+        <p class="name_cart"> <%= "#{@cart.user.name.split(' ').first}'s cart " %> </p>
+    </div>
+
+    <% @products.each do |p|%>
+        <div id="item">
+            <%= p.name %>
+        </div>
+    <% end %>
+
+    <%= link_to "Finish", finish_path, method: :post, class: "white-text waves-effect waves-light btn", style: "margin: 50px;"%>
+</div> 
+
+
+<% @my_cart_contributors.each do |cart| %>
+<div style="display: flex; justify-content: center;">
+    <p class="name_cart"> <%= "#{cart.user.name.split(' ').first}'s cart " %> </p>
+</div>
+
+
+    <% cart_products = CartProduct.where(cart_id: cart.id) %>
+    <% products = [] %>
+    <% cart_products.each{ |cp| products << Product.find(cp.product_id) } %>
+
+    <div style="display: flex; justify-content: left; align-items: center; flex-direction: column;"> 
+        
+        <% products.each do |p|%>
+            <div id="item">
+                <%= p.name %>
+            </div>
+        <% end %>
+
+    </div> 
+
+<% end %>
+
+
 <style>
+
+    .name_cart{
+        font-size: 15px !important;
+        position: center;
+    }
 
     #item{
         padding: 10px;

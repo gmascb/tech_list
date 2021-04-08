@@ -5,7 +5,7 @@
 
 
     <div style="width: 30%;">
-      <p>Selecione o Carrinho para adicionar...</p>
+      <p>Select yout favorite cart to add new itens...</p>
       
       <select name="cart_id" 
               id="cart_id" 
@@ -13,10 +13,21 @@
               onchange="myFunction()"
               >
       
-          <option value="<%= cart.id%>" selected><%= "Carrinho do #{cart.user.name}" %> </option>
+          <option value = "<%= cart.id%>"  
+            <%= "selected" if current_user.favorite_cart == cart.id %>  >
+            <%= "#{cart.user.name}'s cart or my cart..." %> 
+          </option>
       
           <% CartContributor.my_carts(current_user.id).each do |cart_contrib| %>
-              <option value="<%= cart_contrib.cart.id %>"><%= "Carrinho do #{cart_contrib.cart.user.name}" %></option>
+              
+              <option value="<%= cart_contrib.cart.id %>" 
+                
+                <%= "selected" if current_user.favorite_cart == cart_contrib.cart_id %>  >
+
+                <%= "#{cart_contrib.cart.user.name}'s cart" %>
+
+              </option>
+
           <% end %>
       
       </select>
@@ -28,7 +39,8 @@
     <tr>
       <th>Name</th>
       <th>Category</th>
-      <th colspan="3"></th>
+      <th>Add or Remove</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
