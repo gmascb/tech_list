@@ -11,7 +11,7 @@
     <%= javascript_include_tag 'notifyjs/notify', 'data-turbolinks-track' => true %>
   </head>
 
-  <body>
+  <body class="reduce_app">
 
 
     <%= render partial: 'menu/sidebar.html.erb'%>    
@@ -22,4 +22,11 @@
     <%= yield %>
 
   </body>
+
+<style>
+    .reduce_app{
+        width: 480px;
+    }
+</style>
+
 </html>

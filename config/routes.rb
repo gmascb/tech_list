@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get 'cart' => 'carts#index'
   post 'finish' => 'carts#finish'
   post 'add_contributor' => 'carts#add_contributor'
-  post 'altera_carrinho' => 'carts#alter_cart'
+  delete 'remove_contributor/:user_id' => 'carts#remove_contributor', as: :remove_contributor
+  delete 'leave_cart/:cart_id' => 'carts#leave_cart', as: :leave_cart
 
   #routes for google
   match 'auth/google_oauth2/callback', to: 'sessions#create', via: [:get, :post]

@@ -1,0 +1,14 @@
+<div style="display: flex; justify-content: left; align-items: center; flex-direction: column;"> 
+    
+    <div style="display: flex; justify-content: center;">
+        <p class="name_cart"> <%= "#{cart.user.name.split(' ').first}'s cart " %> </p>
+    </div>
+
+    <% products.each do |p|%>
+        <div id="item">
+            <%= p.name %>
+        </div>
+    <% end %>
+
+    <%= link_to "Finish", finish_path, method: :post, class: "white-text waves-effect waves-light btn", style: "margin: 50px;"%>
+</div> 

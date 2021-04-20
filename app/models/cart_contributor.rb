@@ -5,4 +5,8 @@ class CartContributor < ApplicationRecord
     where(user_id: user_id)
   }
 
+  scope :by_cart, -> (cart_id){
+    where(cart_id: cart_id)
+  }
+
 end

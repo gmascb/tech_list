@@ -1,0 +1,11 @@
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    <% CartContributor.by_cart(cart.id).each do |cc| %>
+        <div style="padding: 10px;">
+            <%= link_to "Remove #{User.find(cc.user_id).name.split(" ").first}", 
+                        remove_contributor_path(cc.user_id), 
+                        method: :delete, 
+                        class: "red darken-4 white-text waves-effect waves-light btn" %>
+        </div>
+    <% end %>
+</div>

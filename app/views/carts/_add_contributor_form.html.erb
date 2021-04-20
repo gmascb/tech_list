@@ -1,16 +1,17 @@
-<%= form_tag "/add_contributor", method: :post do |form| %>
+<div style="display: flex; justify-content: center; align-items: center;">
+    <%= form_tag "/add_contributor", method: :post do |form| %>
 
-    <%= hidden_field_tag :cart_id, cart_id %>
+        <%= hidden_field_tag :cart_id, cart_id %>
 
-    <div style="width: 30%;">
-        <select name="user_id" id="user_id" style="display: block !important;">
-            <option value="" disabled selected>Select an user to contibute...</option>
-            <% User.where("id != #{current_user.id}").order(:name).each do |user| %>
-                <option value="<%= user.id %>"><%= user.name %></option>
-            <% end %>
-        </select>
-    </div>
+        <div style="display: flex; align-items: center;">
+            <select name="user_id" id="user_id" style="display: block !important;">
+                <option value="" disabled selected>Select an user to contibute...</option>
+                <% User.where("id != #{current_user.id}").order(:name).each do |user| %>
+                    <option value="<%= user.id %>"><%= user.name %></option>
+                <% end %>
+            </select>
+            <%= submit_tag "Add", class: "white-text waves-effect waves-light btn" %>
+        </div>
 
-    <%= submit_tag "Add", class: "white-text waves-effect waves-light btn" %>
-
-<% end %>
+    <% end %>
+</div>
