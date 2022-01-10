@@ -15,6 +15,10 @@
 # gem 'pg'
 #
 default: &default
+  host: ec2-54-146-73-98.compute-1.amazonaws.com
+  database: d1p5m8oajm8ddb
+  username: fpvrzspvahiuiy
+  password: b91dc8da5cc5236ec20e5fb058b5c23f1776fbd4a5ec7935ea6e18269e2aaeb2
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
@@ -23,7 +27,7 @@ default: &default
 
 development:
   <<: *default
-  database: tech_list_development
+  database: d1p5m8oajm8ddb
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

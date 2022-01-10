@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
         add_carts_to_user(current_user)
 
         controllers = ["home", "sessions"]
-        msg = "É necessário estar logado para usar o sistema."
+        msg = "You need to login to use the system."
 
         if current_user.nil?
             redirect_to root_path, notice: msg unless controllers.include?(request[:controller])
