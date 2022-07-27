@@ -1,3 +1,22 @@
 <% if current_user %>
     <%= "Hello #{current_user.name}, welcome! " %>
 <% end %>
+
+
+<!-- Vuejs Examples -->
+<div style="padding: 50px;">
+    <div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+        {{ todo.text }}
+        </li>
+    </ol>
+    </div>
+
+    <div id="app-5">
+    <p> {{ message }} </p>
+    <button v-on:click="reverseMsg" class="btn gray"> 
+        Click here to reverse the message
+    </button>
+    </div>
+</div>
