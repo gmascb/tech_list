@@ -66,6 +66,6 @@ gem 'jquery-rails'
 gem 'materialize-sass'
 gem 'material_icons'
 
-gem 'mini_racer'
+# gem 'mini_racer'
 
 gem 'rack-cors'
