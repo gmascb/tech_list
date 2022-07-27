@@ -7,12 +7,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'notifyjs/notify', 'data-turbolinks-track' => true %>
+    <%= javascript_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_tag 'notifyjs/notify', 'data-turbolinks-track' => true %>
   </head>
 
   <body>
-    <%= render partial: 'menu/sidebar.html.erb'%>    
+    <%= render partial: 'menu/sidebar'%>    
     <p style="color: green;"> 
       <%= notice %>
     </p> 
